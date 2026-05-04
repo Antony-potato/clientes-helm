@@ -1,0 +1,25 @@
+dockerUser: antonycj
+
+mysql:
+  image: mysql:8.0
+  rootPassword: admin
+  database: clientes
+  port: 3306
+  storage: 1Gi
+
+backend:
+  image: antonycj/clientes-back:latest
+  replicas: 1
+  port: 3000
+  service:
+    type: ClusterIP
+    port: 3000
+
+frontend:
+  image: antonycj/clientes-front:latest
+  replicas: 1
+  port: 80
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30080
