@@ -4,7 +4,7 @@ metadata:
   name: mysql-initdb
 data:
   init.sql: |
-    CREATE DATABASE IF NOT EXISTS {{ .Values.mysql.database }};
+    CREATE DATABASE IF NOT EXISTS {{ .Values.mysql.database }} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
     USE {{ .Values.mysql.database }};
 
     CREATE TABLE IF NOT EXISTS clientes (
@@ -12,7 +12,7 @@ data:
       nombre VARCHAR(100) NOT NULL,
       apellidos VARCHAR(100) NOT NULL,
       ciudad VARCHAR(100) NOT NULL
-    );
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
     INSERT INTO clientes (nombre, apellidos, ciudad) VALUES
       ('Juan',    'Pérez García',    'Monterrey'),
